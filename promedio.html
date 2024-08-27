@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Promedio</title>
+</head>
+<body>
+    <h2>Ingrese la nota</h2>
+    <form id="notaForm">
+        <label for="nota">Nota:</label>
+        <input type="number" id="nota" required>
+        <button type="submit">Calcular Promedio</button>
+    </form>
+
+    <p id="resultado"></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("notaForm");
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                var nota = parseFloat(document.getElementById("nota").value);
+
+                if (nota >= 60) {
+                    document.getElementById("resultado").textContent = "Aprobado!";
+                } else {
+                    document.getElementById("resultado").textContent = "Reprobado";
+                }
+
+                form.reset();
+            });
+        });
+    </script>
+
+</body>
+</html>

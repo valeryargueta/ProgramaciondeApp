@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <div>
+        <h2>Ingrese los datos</h2>
+        <form id="messageForm">
+            <label for="precio">Precio</label>
+            <input type="text" id="precio" required>
+            <label for="cantidad">Cantidad</label>
+            <input type="text" id="cantidad" required>
+            <button type="submit">Enviar</button>
+        </form>
+
+        <p id="resultado"></p>
+
+    </div>
+
+    <script>
+        function calcularTotal(preciounitario, cantidad) {
+            let totalSinDescuento = preciounitario * cantidad;
+            let descuento;
+
+            if (cantidad >= 10) {
+                descuento = 0.20;
+            } else if (cantidad >= 5) {
+                descuento = 0.10;
+            } else {
+                descuento = 0.0;
+            }
+
+            let totalconDescuento = totalSinDescuento * (1 - descuento);
+
+            return totalconDescuento.toFixed(2);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("messageForm");
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                var preciounitario = parseFloat(document.getElementById("precio").value);
+
+                var cantidad = parseInt(document.getElementById("cantidad").value);
+
+                let resultado = calcularTotal(preciounitario, cantidad);
+
+                document.getElementById("resultado").textContent = "El total a pagar es: " + resultado;
+
+                form.reset();
+            });
+        });
+    </script>
+
+</body>
+</html>
